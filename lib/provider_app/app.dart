@@ -39,7 +39,13 @@ class HomePage extends StatelessWidget {
           onPressed: () {
             Navigator.of(context).pushNamed('/new');
           },
-          child: const Text('Add a bread crumb'),
+          child: const Text('Add a new bread crumb'),
+        ),
+        TextButton(
+          onPressed: () {
+            context.read<BreadcrumbProvider>().reset();
+          },
+          child: const Text('Reset'),
         ),
       ]),
     );
