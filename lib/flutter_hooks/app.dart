@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
+
+import 'stream_example.dart';
+import 'text_controller_example.dart';
 
 Stream<String> getTime() => Stream.periodic(
       const Duration(seconds: 1),
       (computationCount) => DateTime.now().toIso8601String(),
     );
+
+const String streamExample = 'stream-example';
+const String textControllerExample = 'text-controller-example';
 
 class MyFlutterHookApp extends StatelessWidget {
   const MyFlutterHookApp({Key? key}) : super(key: key);
@@ -17,48 +22,36 @@ class MyFlutterHookApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const TextControllerExample(),
+      home: const HomePage(),
+      routes: {
+        streamExample: (context) => const StreamExample(),
+        textControllerExample: (context) => const TextControllerExample(),
+      },
     );
   }
 }
 
-class StreamExample extends HookWidget {
-  const StreamExample({Key? key}) : super(key: key);
+class HomePage extends StatelessWidget {
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final dateTime = useStream(getTime());
-
-    return Scaffold(
-      appBar: AppBar(title: Text(dateTime.data ?? 'Flutter Hooks example')),
-    );
-  }
-}
-
-class TextControllerExample extends HookWidget {
-  const TextControllerExample({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    final controller = useTextEditingController();
-    final text = useState('');
-
-    useEffect(() {
-      controller.addListener(() {
-        text.value = controller.text;
-      });
-
-      return null;
-    }, [controller]);
-
     return Scaffold(
       appBar: AppBar(title: const Text('Flutter Hooks example')),
-      body: Column(
+      body: ListView(
         children: [
-          TextField(
-            controller: controller,
+          ListTile(
+            title: const Text('Stream example'),
+            onTap: () {
+              Navigator.of(context).pushNamed(streamExample);
+            },
           ),
-          Text('You typed ${text.value}'),
+          ListTile(
+            title: const Text('useState, useEffect, useTextController example'),
+            onTap: () {
+              Navigator.of(context).pushNamed(textControllerExample);
+            },
+          ),
         ],
       ),
     );
