@@ -73,6 +73,14 @@ flutter pub add flutter_hooks
     );
     ```
 
+- useAppLifecycleState [example](lib/flutter_hooks/use_applifecycle_example.dart) to hide sensitive information
+
+
 ## Extra
 
 - created an [extension](lib/flutter_hooks/compact_map_extension.dart) to remove nullable values from iterables
+
+
+<p align="center">
+  <img width="500" height="1000" src="simulator_screenshot.png">
+</p>

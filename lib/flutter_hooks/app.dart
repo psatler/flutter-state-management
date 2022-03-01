@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'memoized_future.dart';
 import 'stream_example.dart';
 import 'text_controller_example.dart';
+import 'use_applifecycle_example.dart';
 import 'use_listenable_example.dart';
 import 'scrolling_example.dart';
 import 'use_stream_controller_example.dart';
@@ -20,6 +21,7 @@ const String listenableExample = 'listenable-example';
 const String scrollingExample = 'scrolling-example';
 const String streamControllerExample = 'stream-controller-example';
 const String reducerExample = 'reducer-example';
+const String appLifeCycleExample = 'appLifeCycle-example';
 
 class MyFlutterHookApp extends StatelessWidget {
   const MyFlutterHookApp({Key? key}) : super(key: key);
@@ -42,6 +44,7 @@ class MyFlutterHookApp extends StatelessWidget {
         streamControllerExample: (context) =>
             const UseStreamControllerExample(),
         reducerExample: (context) => const UseReducerExample(),
+        appLifeCycleExample: (context) => const UseAppLifeCycleExample(),
       },
     );
   }
@@ -96,6 +99,12 @@ class HomePage extends StatelessWidget {
             title: const Text('use reducer example'),
             onTap: () {
               Navigator.of(context).pushNamed(reducerExample);
+            },
+          ),
+          ListTile(
+            title: const Text('useAppLifeCycle example'),
+            onTap: () {
+              Navigator.of(context).pushNamed(appLifeCycleExample);
             },
           ),
         ],
