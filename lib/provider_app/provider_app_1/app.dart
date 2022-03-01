@@ -5,8 +5,8 @@ import 'breadcrumb.dart';
 import 'breadcrumb_widget.dart';
 import 'new_breadcrumb_widget.dart';
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class MyProviderApp1 extends StatelessWidget {
+  const MyProviderApp1({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
