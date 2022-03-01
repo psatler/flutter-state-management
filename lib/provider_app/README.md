@@ -1,9 +1,19 @@
 
 # [Provider](https://pub.dev/packages/provider)
 
+- We used two packages for these examples
+  - ```
+    flutter pub add provider
+    flutter pub add uuid
+    ```
+
+1. Simpler example showing adding breadcrumbs is found [here](lib/provider_app/provider_app_1)
+2. Example showing use of `select`, `watch` and `read` is found [here](lib/provider_app/provider_app_2)
+3. Example showing the use of `Multiprovider` is found [here](lib/provider_app/provider_app_3_multiprovider)
 
 
 - ChangeNotifierProvider creates an instance of a ChangeNotifier and provide it to its descendants
+- Any provider can be a ChangeNotifier or a ValueNotifier. In the case we want multiple values to change we use ChangeNotifier.
 
 - methods to communicate with providers
   - **read**: usually used when you want to communicate something to the provider. For example, to perform an action. 
