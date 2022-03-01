@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'breadcrumb.dart';
+import 'breadcrumb_widget.dart';
+import 'new_breadcrumb_widget.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -18,7 +20,7 @@ class MyApp extends StatelessWidget {
         ),
         home: const HomePage(),
         routes: {
-          '/new': (context) => const Material(),
+          '/new': (context) => const NewBreadCrumbWidget(),
         },
       ),
     );
@@ -35,6 +37,17 @@ class HomePage extends StatelessWidget {
         title: const Text('Provider'),
       ),
       body: Column(children: [
+        Consumer<BreadcrumbProvider>(
+          builder: (context, value, child) {
+            return BreadCrumbsWidget(
+              breadCrumbs: value.items,
+              onTapped: (Breadcrumb breadcrumb) {
+                print('Breadcrumb clicked was');
+                print(breadcrumb.toString());
+              },
+            );
+          },
+        ),
         TextButton(
           onPressed: () {
             Navigator.of(context).pushNamed('/new');

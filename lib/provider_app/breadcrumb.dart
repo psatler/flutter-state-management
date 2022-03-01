@@ -24,6 +24,10 @@ class Breadcrumb {
 
   @override
   int get hashCode => uuid.hashCode;
+
+  @override
+  String toString() =>
+      'Breadcrumb(isActive: $isActive, name: $name, uuid: $uuid)';
 }
 
 class BreadcrumbProvider extends ChangeNotifier {
@@ -43,28 +47,5 @@ class BreadcrumbProvider extends ChangeNotifier {
     _items.clear();
 
     notifyListeners();
-  }
-}
-
-class BreadCrumbsWidget extends StatelessWidget {
-  const BreadCrumbsWidget({
-    Key? key,
-    required this.breadCrumbs,
-  }) : super(key: key);
-
-  final UnmodifiableListView<Breadcrumb> breadCrumbs;
-
-  @override
-  Widget build(BuildContext context) {
-    return Wrap(
-      children: breadCrumbs.map((breadCrumb) {
-        return Text(
-          breadCrumb.title,
-          style: TextStyle(
-            color: breadCrumb.isActive ? Colors.blue : Colors.black,
-          ),
-        );
-      }).toList(),
-    );
   }
 }
