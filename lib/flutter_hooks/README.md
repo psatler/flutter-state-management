@@ -51,7 +51,11 @@ flutter pub add flutter_hooks
     final imageFuture = useMemoized(() => future); // memoizing a complex obj
     final snapshotImage = useFuture(imageFuture);
   ```
-
+- useListenable [example](lib/flutter_hooks/use_listenable_example.dart)
+  - this will help us listen for changes in a ValueNotifier and/or ChangeNotifier
+  - in other words, it consumes a listenable and call the `build()` method whenever the listenable value changes
+  - we'll have to use _useMemoized_ so that it doesn't create the listenable over and over again when the build happens
+    
 
 ## Extra
 
