@@ -64,6 +64,14 @@ flutter pub add flutter_hooks
   - we're going to rotate the image by a certain degree. Therefore, we make use of _RotationTransition_.
   - on every tap, we add 10 degrees to the rotation controller sink
 
+- useReducer [example](lib/flutter_hooks/use_reducer_example.dart)
+   ```dart
+     final store = useReducer<State, Action?>(
+      reducer,
+      initialState: const State.zero(),
+      initialAction: null,
+    );
+    ```
 
 ## Extra
 

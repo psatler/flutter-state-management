@@ -6,6 +6,7 @@ import 'text_controller_example.dart';
 import 'use_listenable_example.dart';
 import 'scrolling_example.dart';
 import 'use_stream_controller_example.dart';
+import 'use_reducer_example.dart';
 
 Stream<String> getTime() => Stream.periodic(
       const Duration(seconds: 1),
@@ -18,6 +19,7 @@ const String futureExample = 'future-example';
 const String listenableExample = 'listenable-example';
 const String scrollingExample = 'scrolling-example';
 const String streamControllerExample = 'stream-controller-example';
+const String reducerExample = 'reducer-example';
 
 class MyFlutterHookApp extends StatelessWidget {
   const MyFlutterHookApp({Key? key}) : super(key: key);
@@ -39,6 +41,7 @@ class MyFlutterHookApp extends StatelessWidget {
         scrollingExample: (context) => const ScrollingExample(),
         streamControllerExample: (context) =>
             const UseStreamControllerExample(),
+        reducerExample: (context) => const UseReducerExample(),
       },
     );
   }
@@ -87,6 +90,12 @@ class HomePage extends StatelessWidget {
             title: const Text('useStreamController example'),
             onTap: () {
               Navigator.of(context).pushNamed(streamControllerExample);
+            },
+          ),
+          ListTile(
+            title: const Text('use reducer example'),
+            onTap: () {
+              Navigator.of(context).pushNamed(reducerExample);
             },
           ),
         ],
