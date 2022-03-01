@@ -60,6 +60,11 @@ flutter pub add flutter_hooks
   - we had to **normalize** values in this examples. For that, we created an [extension](lib/flutter_hooks/extensions/normalize_extension.dart).
   - 
 
+- useStreamController [example](lib/flutter_hooks/use_stream_controller_example.dart)
+  - we're going to rotate the image by a certain degree. Therefore, we make use of _RotationTransition_.
+  - on every tap, we add 10 degrees to the rotation controller sink
+
+
 ## Extra
 
 - created an [extension](lib/flutter_hooks/compact_map_extension.dart) to remove nullable values from iterables
