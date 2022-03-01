@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
-import 'compact_map_extension.dart';
+import 'extensions/compact_map_extension.dart';
 
 class FutureExample extends HookWidget {
   const FutureExample({Key? key}) : super(key: key);

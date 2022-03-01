@@ -56,6 +56,9 @@ flutter pub add flutter_hooks
   - in other words, it consumes a listenable and call the `build()` method whenever the listenable value changes
   - we'll have to use _useMemoized_ so that it doesn't create the listenable over and over again when the build happens
     
+- [useAnimationController and useScrollController](lib/flutter_hooks/scrolling_example.dart) to create a scrolling animation
+  - we had to **normalize** values in this examples. For that, we created an [extension](lib/flutter_hooks/extensions/normalize_extension.dart).
+  - 
 
 ## Extra
 

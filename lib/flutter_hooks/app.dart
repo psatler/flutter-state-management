@@ -4,6 +4,7 @@ import 'memoized_future.dart';
 import 'stream_example.dart';
 import 'text_controller_example.dart';
 import 'use_listenable_example.dart';
+import 'scrolling_example.dart';
 
 Stream<String> getTime() => Stream.periodic(
       const Duration(seconds: 1),
@@ -14,6 +15,7 @@ const String streamExample = 'stream-example';
 const String textControllerExample = 'text-controller-example';
 const String futureExample = 'future-example';
 const String listenableExample = 'listenable-example';
+const String scrollingExample = 'scrolling-example';
 
 class MyFlutterHookApp extends StatelessWidget {
   const MyFlutterHookApp({Key? key}) : super(key: key);
@@ -32,6 +34,7 @@ class MyFlutterHookApp extends StatelessWidget {
         textControllerExample: (context) => const TextControllerExample(),
         futureExample: (context) => const FutureExample(),
         listenableExample: (context) => const ListenableExample(),
+        scrollingExample: (context) => const ScrollingExample(),
       },
     );
   }
@@ -68,6 +71,12 @@ class HomePage extends StatelessWidget {
             title: const Text('useListenable example'),
             onTap: () {
               Navigator.of(context).pushNamed(listenableExample);
+            },
+          ),
+          ListTile(
+            title: const Text('scrolling example'),
+            onTap: () {
+              Navigator.of(context).pushNamed(scrollingExample);
             },
           ),
         ],
