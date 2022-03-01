@@ -25,7 +25,34 @@ flutter pub add flutter_hooks
   Widget build(BuildContext context) {
     final dateTime = useStream(getTime());
   ```
-- 
+- useState, useTextEditingController, useEffect
+  ```dart
+  @override
+  Widget build(BuildContext context) {
+    final controller = useTextEditingController();
+    final text = useState('');
+
+    useEffect(() {
+      controller.addListener(() {
+        text.value = controller.text;
+      });
+
+      return null;
+    }, [controller]);
+  ```
+- useMemoized
+  - this allows caching of complex objects
+  ```dart
+    final future = NetworkAssetBundle(Uri.parse(url()))
+        .load(url())
+        .then((data) => data.buffer.asUint8List())
+        .then((data) => Image.memory(data));
+
+    final imageFuture = useMemoized(() => future); // memoizing a complex obj
+    final snapshotImage = useFuture(imageFuture);
+  ```
 
 
+## Extra
 
+- created an [extension](lib/flutter_hooks/compact_map_extension.dart) to remove nullable values from iterables

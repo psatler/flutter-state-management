@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'memoized_future.dart';
 import 'stream_example.dart';
 import 'text_controller_example.dart';
 
@@ -10,6 +11,7 @@ Stream<String> getTime() => Stream.periodic(
 
 const String streamExample = 'stream-example';
 const String textControllerExample = 'text-controller-example';
+const String futureExample = 'future-example';
 
 class MyFlutterHookApp extends StatelessWidget {
   const MyFlutterHookApp({Key? key}) : super(key: key);
@@ -26,6 +28,7 @@ class MyFlutterHookApp extends StatelessWidget {
       routes: {
         streamExample: (context) => const StreamExample(),
         textControllerExample: (context) => const TextControllerExample(),
+        futureExample: (context) => const FutureExample(),
       },
     );
   }
@@ -50,6 +53,12 @@ class HomePage extends StatelessWidget {
             title: const Text('useState, useEffect, useTextController example'),
             onTap: () {
               Navigator.of(context).pushNamed(textControllerExample);
+            },
+          ),
+          ListTile(
+            title: const Text('useFuture example'),
+            onTap: () {
+              Navigator.of(context).pushNamed(futureExample);
             },
           ),
         ],
