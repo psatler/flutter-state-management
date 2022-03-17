@@ -1,7 +1,7 @@
 
 # [Provider](https://pub.dev/packages/provider)
 
-- We used two packages for these examples
+- For these examples, we are using two packages
   - ```
     flutter pub add provider
     flutter pub add uuid
