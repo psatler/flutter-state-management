@@ -40,6 +40,10 @@ dependencies:
   # hooks example
   flutter_hooks: ^0.18.2+1
 
+  # redux example
+  redux: ^5.0.0
+  flutter_redux: ^0.9.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
