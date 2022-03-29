@@ -1,0 +1,20 @@
+[
+  {
+    "id": "1",
+    "name": "Foo",
+    "age": 20,
+    "imageUrl": "https://images.unsplash.com/photo-1647518608776-2ea96a9e36d7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=685&q=80"
+  },
+  {
+    "id": "2",
+    "name": "Bar",
+    "age": 30,
+    "imageUrl" :"https://images.unsplash.com/photo-1647870910609-2ba8eb4ab984?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80"
+  },
+  {
+    "id": "3",
+    "name": "Baz",
+    "age": 40,
+    "imageUrl": "https://images.unsplash.com/photo-1647722391464-744fde68bdca?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+  }
+]
