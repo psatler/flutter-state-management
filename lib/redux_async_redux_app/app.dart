@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'features/tasks/tasks.dart';
+import 'features/home/home.dart';
+
 class AsyncReduxApp extends StatelessWidget {
   const AsyncReduxApp({Key? key}) : super(key: key);
 
@@ -10,23 +13,12 @@ class AsyncReduxApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const HomePage(),
-      // routes: {
-      //   '/new': (context) => const NewBreadCrumbWidget(),
-      // },
-    );
-  }
-}
-
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Async Redux example'),
-      ),
+      // home: const HomePage(),
+      routes: {
+        HomePage.routeName: (context) => const HomePage(),
+        AddTask.routeName: (context) => const AddTask(),
+        TaskDetails.routeName: (context) => const TaskDetails(),
+      },
     );
   }
 }
