@@ -6,7 +6,8 @@ import 'package:flutter/material.dart';
 // import 'flutter_hooks/app.dart';
 // import 'redux_app/redux_app_basic/app.dart';
 // import 'redux_app/redux_with_async_middleware/app.dart';
-import 'redux_app/redux_with_a_more_complex_async_middleware/app.dart';
+// import 'redux_app/redux_with_a_more_complex_async_middleware/app.dart';
+import 'redux_async_redux_app/app.dart';
 
 void main() {
   // runApp(const MyProviderApp1());
@@ -14,5 +15,6 @@ void main() {
   // runApp(const MyFlutterHookApp());
   // runApp(const MyReduxAppBasic());
   // runApp(const MyReduxAppAsync());
-  runApp(const MyReduxAppAsyncMoreComplex());
+  // runApp(const MyReduxAppAsyncMoreComplex());
+  runApp(const AsyncReduxApp());
 }
