@@ -1,5 +1,6 @@
 import 'package:async_redux/async_redux.dart';
-import 'package:flutter_state_management/redux_async_redux_app/core/stores/state.dart';
+
+import 'app_state.dart';
 
 const state = AppState.initialState();
 
