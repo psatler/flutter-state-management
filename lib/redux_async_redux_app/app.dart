@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'core/stores/app_redux.dart';
 import 'features/tasks/tasks.dart';
 import 'features/home/home.dart';
 
@@ -8,17 +9,19 @@ class AsyncReduxApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return AppRedux(
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        // home: const HomePage(),
+        routes: {
+          HomePage.routeName: (context) => const HomePageConnector(),
+          AddTaskPage.routeName: (context) => const AddTaskPage(),
+          TaskDetailsPage.routeName: (context) => const TaskDetailsPage(),
+        },
       ),
-      // home: const HomePage(),
-      routes: {
-        HomePage.routeName: (context) => const HomePage(),
-        AddTask.routeName: (context) => const AddTask(),
-        TaskDetails.routeName: (context) => const TaskDetails(),
-      },
     );
   }
 }

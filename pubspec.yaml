@@ -48,6 +48,7 @@ dependencies:
 
   # async redux example
   async_redux: ^14.1.1
+  dio: ^4.0.6
 
 dev_dependencies:
   flutter_test:

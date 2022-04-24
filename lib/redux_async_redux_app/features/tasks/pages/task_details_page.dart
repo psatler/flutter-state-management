@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class TaskDetails extends StatelessWidget {
-  const TaskDetails({Key? key}) : super(key: key);
+class TaskDetailsPage extends StatelessWidget {
+  const TaskDetailsPage({Key? key}) : super(key: key);
 
   static const routeName = '/task_details';
 

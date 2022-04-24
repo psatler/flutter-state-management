@@ -42,6 +42,7 @@ An official example can be found [here](https://github.com/marcglasberg/redux_ap
   ```
   - We can observe rebuilds with the [modelObserver](https://pub.dev/packages/async_redux#observing-rebuilds)
 - Example on how to [interact with a database or some external service](https://pub.dev/packages/async_redux#how-to-interact-with-the-database) by using an async action and abstracting the service with a DAO
+  - Another way of interacting with external services would be using a DI, such as explained [at the package's issues](https://github.com/marcglasberg/async_redux/issues/107#issuecomment-863830998) and also the [at the docs as a form of Dependency Injection](https://pub.dev/packages/async_redux#dependency-injection)
 
 # Related content for this example
 
