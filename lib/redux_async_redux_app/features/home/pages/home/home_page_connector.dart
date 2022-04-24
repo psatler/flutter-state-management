@@ -47,11 +47,13 @@ import 'home_page.dart';
 class HomePageViewModel extends Vm {
   final List<TasksModel> tasks;
   final VoidCallback onFetchTasks;
+  final bool isLoadingTasks;
 
   HomePageViewModel({
     required this.tasks,
     required this.onFetchTasks,
-  }) : super(equals: [tasks]);
+    required this.isLoadingTasks,
+  }) : super(equals: [tasks, isLoadingTasks]);
 }
 
 class HomePageFactory extends VmFactory<AppState, HomePageConnector> {
@@ -63,6 +65,7 @@ class HomePageFactory extends VmFactory<AppState, HomePageConnector> {
     return HomePageViewModel(
       tasks: state.tasksState.tasks,
       onFetchTasks: () => dispatch(GetTodosAction()),
+      isLoadingTasks: state.wait.isWaitingFor(TasksState.IS_LOADING, ref: 0),
     );
   }
 }
@@ -78,6 +81,7 @@ class HomePageConnector extends StatelessWidget {
         return HomePage(
           tasksList: vm.tasks,
           onFetchTasks: vm.onFetchTasks,
+          isLoadingTasks: vm.isLoadingTasks,
         );
       },
     );

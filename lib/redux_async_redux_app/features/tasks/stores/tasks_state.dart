@@ -4,6 +4,8 @@ import '../model/model.dart';
 
 @immutable
 class TasksState {
+  static const IS_LOADING = 'tasks-loading';
+
   final List<TasksModel> tasks;
 
   const TasksState({
