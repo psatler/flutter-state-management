@@ -57,10 +57,17 @@ class _HomePageState extends State<HomePage> {
                       Color rowColor =
                           index % 2 == 0 ? Colors.green : Colors.yellow;
 
+                      int taskId = task.id;
+
                       return ListTile(
                         onTap: () {
                           Navigator.pushNamed(
-                              context, TaskDetailsPage.routeName);
+                            context,
+                            TasksDetailsPage.routeName,
+                            arguments: TasksDetailsPageArguments(
+                              taskId: taskId,
+                            ),
+                          );
                         },
                         title: Text(task.title),
                         subtitle: Text(task.body),
