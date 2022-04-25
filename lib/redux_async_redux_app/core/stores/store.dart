@@ -12,4 +12,6 @@ var store = Store<AppState>(
     // https://pub.dev/packages/async_redux#dependency-injection
     httpService: DioService(),
   ),
+  // actionObservers: kReleaseMode ? null : [ConsoleActionObserver()],
+  // modelObserver: DefaultModelObserver(),
 );
