@@ -17,7 +17,17 @@ class AsyncReduxApp extends StatelessWidget {
         // home: const HomePage(),
         routes: routes(context),
         // onGenerateRoute: ,
+        navigatorObservers: [
+          RouteNavObserver.instance.routeObserver,
+        ],
       ),
     );
   }
+}
+
+class RouteNavObserver {
+  static final instance = RouteNavObserver._();
+  RouteNavObserver._();
+
+  final routeObserver = RouteObserver<ModalRoute>();
 }

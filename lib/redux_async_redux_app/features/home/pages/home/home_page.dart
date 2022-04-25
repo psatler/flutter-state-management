@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_state_management/redux_async_redux_app/app.dart';
 
 import 'package:flutter_state_management/redux_async_redux_app/features/tasks/tasks.dart';
 
@@ -20,12 +21,31 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage> with RouteAware {
   @override
   void initState() {
     super.initState();
 
     widget.onFetchTasks();
+
+    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+      RouteNavObserver.instance.routeObserver
+          .subscribe(this, ModalRoute.of(context)!);
+    });
+  }
+
+  @override
+  void dispose() {
+    RouteNavObserver.instance.routeObserver.unsubscribe(this);
+    super.dispose();
+  }
+
+  @override
+  void didPopNext() {
+    // a more robust but complex way to rebuild the page when we this page get focused on again
+
+    print('back to this page');
+    setState(() {});
   }
 
   @override
@@ -38,7 +58,7 @@ class _HomePageState extends State<HomePage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           await Navigator.pushNamed(context, AddTaskPage.routeName);
-          setState(() {});
+          // setState(() {}); // check didPopNext override above for another way of updating the screen when we get back from adding the new task
         },
         child: const Icon(Icons.add),
       ),
