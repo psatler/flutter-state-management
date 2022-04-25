@@ -1,0 +1,12 @@
+{
+  "name": "remote-dev-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "remotedev --port 8000"
+  },
+  "dependencies": {
+    "remotedev-server": "^0.3.1"
+  }
+}

@@ -3,6 +3,16 @@
 
 An official example can be found [here](https://github.com/marcglasberg/redux_app_example)
 
+## Remote Dev Server
+
+```
+cd redux-remote-dev-server
+yarn 
+
+yarn start
+
+flutter run (or F5)
+```
 
 ## Some concepts of this package
 

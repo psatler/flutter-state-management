@@ -1,14 +1,22 @@
+import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 
 import 'core/navigation/routes.dart';
 import 'core/stores/app_redux.dart';
+import 'core/stores/app_state.dart';
 
 class AsyncReduxApp extends StatelessWidget {
-  const AsyncReduxApp({Key? key}) : super(key: key);
+  const AsyncReduxApp({
+    Key? key,
+    required this.store,
+  }) : super(key: key);
+
+  final Store<AppState> store;
 
   @override
   Widget build(BuildContext context) {
     return AppRedux(
+      store: store,
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
