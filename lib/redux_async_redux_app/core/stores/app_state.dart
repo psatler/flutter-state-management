@@ -33,13 +33,13 @@ class AppState {
     );
   }
 
-  // Map<String, dynamic> toMap() {
-  //   return {
-  //     'wait': wait.toMap(),
-  //     'homeState': homeState.toMap(),
-  //     'tasksState': tasksState.toMap(),
-  //   };
-  // }
+  Map<String, dynamic> toMap() {
+    return {
+      // 'wait': wait.toMap(),
+      // 'homeState': homeState.toMap(),
+      'tasksState': tasksState.toMap(),
+    };
+  }
 
   // factory AppState.fromMap(Map<String, dynamic> map) {
   //   return AppState(
