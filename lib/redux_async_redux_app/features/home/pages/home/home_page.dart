@@ -21,6 +21,7 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
+// https://medium.flutterdevs.com/routeaware-in-flutter-8d26faff05e2
 class _HomePageState extends State<HomePage> with RouteAware {
   @override
   void initState() {

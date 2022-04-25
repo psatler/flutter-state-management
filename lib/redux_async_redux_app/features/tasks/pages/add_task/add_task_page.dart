@@ -19,6 +19,16 @@ class AddTaskPage extends HookWidget {
     final titleTextController = useTextEditingController();
     final bodyTextController = useTextEditingController();
 
+    final handleSubmit = useCallback(() {
+      handleCreateNewTask(
+        title: titleTextController.text,
+        body: bodyTextController.text,
+      );
+
+      titleTextController.clear();
+      bodyTextController.clear();
+    }, [handleCreateNewTask, titleTextController, bodyTextController]);
+
     return Scaffold(
       appBar: AppBar(title: const Text('Add Task')),
       body: SafeArea(
@@ -38,6 +48,13 @@ class AddTaskPage extends HookWidget {
                 decoration: const InputDecoration(labelText: 'Task body'),
                 keyboardType: TextInputType.multiline,
                 textInputAction: TextInputAction.done,
+                onEditingComplete: () {
+                  print('onEditingComplete');
+                  handleSubmit();
+                },
+                // onSubmitted: (text) {
+                //   print('onSubmitted $text');
+                // },
                 minLines: 3,
                 maxLines: null,
                 // keyboardType: TextInputType.number,
@@ -56,13 +73,8 @@ class AddTaskPage extends HookWidget {
                   ),
                   TextButton.icon(
                     onPressed: () {
-                      handleCreateNewTask(
-                        title: titleTextController.text,
-                        body: bodyTextController.text,
-                      );
-
-                      titleTextController.clear();
-                      bodyTextController.clear();
+                      handleSubmit();
+                      FocusManager.instance.primaryFocus?.unfocus();
                     },
                     icon: const Icon(Icons.add),
                     label: const Text('Add Task'),
