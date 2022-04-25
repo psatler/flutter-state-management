@@ -36,8 +36,9 @@ class _HomePageState extends State<HomePage> {
         title: const Text('Async Redux example'),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.pushNamed(context, AddTaskPage.routeName);
+        onPressed: () async {
+          await Navigator.pushNamed(context, AddTaskPage.routeName);
+          setState(() {});
         },
         child: const Icon(Icons.add),
       ),

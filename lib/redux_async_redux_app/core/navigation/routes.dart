@@ -4,7 +4,7 @@ import 'package:flutter_state_management/redux_async_redux_app/features/tasks/ta
 
 routes(BuildContext context) => {
       HomePage.routeName: (context) => const HomePageConnector(),
-      AddTaskPage.routeName: (context) => const AddTaskPage(),
+      AddTaskPage.routeName: (context) => const AddTaskPageConnector(),
       TasksDetailsPage.routeName: (context) {
         final args = ModalRoute.of(context)!.settings.arguments
             as TasksDetailsPageArguments;
