@@ -1,0 +1,8 @@
+query SingleCountry($countryId: ID!) {
+  country(code: $countryId) {
+    code
+    name
+    phone
+    capital
+  }
+}

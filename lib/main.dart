@@ -18,5 +18,6 @@ void main() {
   // runApp(const MyReduxAppAsync());
   // runApp(const MyReduxAppAsyncMoreComplex());
   // runApp(const AsyncReduxApp());
+
   runApp(const FlutterWithGraphQLApp());
 }

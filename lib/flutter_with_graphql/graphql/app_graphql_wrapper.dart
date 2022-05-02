@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
+// https://countries.trevorblades.com/
+const graphQLURL = 'https://countries.trevorblades.com/';
+
 class Client {
   ValueNotifier<GraphQLClient> getClient() {
     final HttpLink httpLink = HttpLink(
-      'https://api.github.com/graphql',
+      graphQLURL,
+      // 'https://api.github.com/graphql',
     );
 
     final AuthLink authLink = AuthLink(
