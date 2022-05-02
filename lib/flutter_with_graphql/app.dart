@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_state_management/flutter_with_graphql/components/query_wrapper.dart';
 import 'package:flutter_state_management/flutter_with_graphql/graphql/queries/country/country.graphql.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 import 'graphql/app_graphql_wrapper.dart';
+import 'graphql/queries/country/country_query_string.dart';
 
 class FlutterWithGraphQLApp extends StatelessWidget {
   const FlutterWithGraphQLApp({Key? key}) : super(key: key);
@@ -17,8 +19,84 @@ class FlutterWithGraphQLApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
         routes: {
+          Root.routeName: (context) => const Root(),
           HomePage.routeName: (context) => const HomePage(),
           HomePageWithHooks.routeName: (context) => const HomePageWithHooks(),
+          HomePageWithWrapper.routeName: (context) =>
+              const HomePageWithWrapper(),
+        },
+      ),
+    );
+  }
+}
+
+class Root extends StatelessWidget {
+  const Root({Key? key}) : super(key: key);
+
+  static const String routeName = '/';
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('GraphQL Flutter')),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              ListTile(
+                title: const Text('Normal Query Widget'),
+                onTap: () {
+                  Navigator.pushNamed(context, HomePage.routeName);
+                },
+              ),
+              ListTile(
+                title: const Text('Normal Query Widget using a custom wrapper'),
+                onTap: () {
+                  Navigator.pushNamed(context, HomePageWithWrapper.routeName);
+                },
+              ),
+              ListTile(
+                title: const Text('Query Widget with Hooks'),
+                onTap: () {
+                  Navigator.pushNamed(context, HomePageWithHooks.routeName);
+                },
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class HomePageWithWrapper extends StatelessWidget {
+  const HomePageWithWrapper({Key? key}) : super(key: key);
+
+  static const String routeName = '/home_page_wrapper';
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(),
+      body: QueryWrapper<QuerySingleCountry>(
+        queryString: COUNTRY_QUERY_STRING,
+        dataParser: (json) => QuerySingleCountry.fromJson(json),
+        variables: const {
+          "countryId": "AD",
+        },
+        contentBuilder: (data) {
+          final country = data.country;
+
+          return Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(country?.name ?? ''),
+                Text(country?.code ?? ''),
+                Text(country?.phone ?? ''),
+              ],
+            ),
+          );
         },
       ),
     );
@@ -28,11 +106,12 @@ class FlutterWithGraphQLApp extends StatelessWidget {
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
-  static const String routeName = '/';
+  static const String routeName = '/home_page';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       // using the generated graphql code
       body: SafeArea(
         child: Query(
@@ -89,14 +168,17 @@ class HomePageWithHooks extends HookWidget {
     }
     final data = queryResult.result.parsedData;
 
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(data?.country?.name ?? ''),
-          Text(data?.country?.code ?? ''),
-          Text(data?.country?.phone ?? ''),
-        ],
+    return Scaffold(
+      appBar: AppBar(),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(data?.country?.name ?? ''),
+            Text(data?.country?.code ?? ''),
+            Text(data?.country?.phone ?? ''),
+          ],
+        ),
       ),
     );
   }
