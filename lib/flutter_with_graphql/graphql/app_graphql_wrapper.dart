@@ -5,9 +5,9 @@ import 'package:graphql_flutter/graphql_flutter.dart';
 const graphQLURL = 'https://countries.trevorblades.com/';
 
 class Client {
-  ValueNotifier<GraphQLClient> getClient() {
+  static ValueNotifier<GraphQLClient> getClient(String url) {
     final HttpLink httpLink = HttpLink(
-      graphQLURL,
+      url,
       // 'https://api.github.com/graphql',
     );
 
@@ -42,7 +42,8 @@ class AppGraphQLWrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GraphQLProvider(
-      client: Client().getClient(),
+      // client: Client().getClient('https://countries.trevorblades.com/'),
+      client: Client.getClient('http://localhost:4000/'),
       child: child,
     );
   }

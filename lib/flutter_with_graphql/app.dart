@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_state_management/flutter_with_graphql/components/query_wrapper.dart';
 import 'package:flutter_state_management/flutter_with_graphql/graphql/queries/country/country.graphql.dart';
+import 'package:flutter_state_management/flutter_with_graphql/pages/mutation_with_hooks.dart';
+import 'package:flutter_state_management/flutter_with_graphql/pages/mutations.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 import 'graphql/app_graphql_wrapper.dart';
@@ -24,6 +26,9 @@ class FlutterWithGraphQLApp extends StatelessWidget {
           HomePageWithHooks.routeName: (context) => const HomePageWithHooks(),
           HomePageWithWrapper.routeName: (context) =>
               const HomePageWithWrapper(),
+          MutationExample1.routeName: (context) => const MutationExample1(),
+          MutationExample2WithHooks.routeName: (context) =>
+              const MutationExample2WithHooks(),
         },
       ),
     );
@@ -59,6 +64,19 @@ class Root extends StatelessWidget {
                 title: const Text('Query Widget with Hooks'),
                 onTap: () {
                   Navigator.pushNamed(context, HomePageWithHooks.routeName);
+                },
+              ),
+              ListTile(
+                title: const Text('Mutation example'),
+                onTap: () {
+                  Navigator.pushNamed(context, MutationExample1.routeName);
+                },
+              ),
+              ListTile(
+                title: const Text('Mutation example with Hooks'),
+                onTap: () {
+                  Navigator.pushNamed(
+                      context, MutationExample2WithHooks.routeName);
                 },
               ),
             ],
@@ -150,13 +168,23 @@ class HomePageWithHooks extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
+    // final queryResult = useQueryWith<QuerySingleCountry>(
+    //   QueryOptions(
+    //     document: QUERY_SINGLE_COUNTRY,
+    //     variables: const {
+    //       "countryId": "AD",
+    //     },
+    //     // parserFn: (json) => QuerySingleCountry.fromJson(json),
+    //   ),
+    // );
     final queryResult = useQuery(
       QueryOptions(
         document: QUERY_SINGLE_COUNTRY,
         variables: const {
           "countryId": "AD",
         },
-        parserFn: (json) => QuerySingleCountry.fromJson(json),
+        parserFn: QuerySingleCountry.fromJson,
+        // parserFn: (json) => QuerySingleCountry.fromJson(json),
       ),
     );
 
