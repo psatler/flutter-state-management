@@ -1,11 +1,12 @@
 import 'package:async_redux/async_redux.dart';
+import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 
 import '../../features/home/home.dart';
 import '../../features/tasks/tasks.dart';
 
 @immutable
-class AppState {
+class AppState extends Equatable {
   final Wait wait; // https://pub.dev/packages/async_redux#progress-indicators
   final HomeState homeState;
   final TasksState tasksState;
@@ -54,19 +55,8 @@ class AppState {
   // factory AppState.fromJson(String source) => AppState.fromMap(json.decode(source));
 
   @override
-  String toString() =>
-      'AppState(wait: $wait, homeState: $homeState, tasksState: $tasksState)';
+  List<Object?> get props => [wait, homeState, tasksState];
 
   @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-
-    return other is AppState &&
-        other.wait == wait &&
-        other.homeState == homeState &&
-        other.tasksState == tasksState;
-  }
-
-  @override
-  int get hashCode => wait.hashCode ^ homeState.hashCode ^ tasksState.hashCode;
+  bool? get stringify => true;
 }

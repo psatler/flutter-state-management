@@ -1,11 +1,10 @@
-import 'dart:convert';
-
+import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 
 import '../model/model.dart';
 
 @immutable
-class TasksState {
+class TasksState extends Equatable {
   static const IS_LOADING = 'tasks-loading';
 
   final List<TasksModel> tasks;
@@ -29,6 +28,12 @@ class TasksState {
       'tasks': tasks.map((x) => x.toMap()).toList(),
     };
   }
+
+  @override
+  List<Object?> get props => [tasks];
+
+  @override
+  bool? get stringify => true;
 
   // factory TasksState.fromMap(Map<String, dynamic> map) {
   //   return TasksState(
