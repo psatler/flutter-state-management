@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'abstract_classes/abstract_classes.dart';
+import '1_abstract_classes/abstract_classes.dart';
 
 class DartConcepts extends StatelessWidget {
   const DartConcepts({Key? key}) : super(key: key);
