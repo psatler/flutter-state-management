@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_state_management/flutter_with_graphql/app.dart';
+import 'package:flutter_state_management/_dart/dart_concepts.dart';
+// import 'package:flutter_state_management/flutter_with_graphql/app.dart';
 
 // import 'provider_app/provider_app_1/app.dart';
 // import 'provider_app/provider_app_2/app.dart';
@@ -19,5 +20,6 @@ void main() {
   // runApp(const MyReduxAppAsyncMoreComplex());
   // runApp(const AsyncReduxApp());
 
-  runApp(const FlutterWithGraphQLApp());
+  // runApp(const FlutterWithGraphQLApp());
+  runApp(const DartConcepts());
 }
