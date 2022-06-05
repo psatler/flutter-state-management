@@ -1,12 +1,6 @@
-import 'dart:developer' as devtools show log;
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
-extension Log on Object {
-  // void log() => devtools.log(this.toString());
-  void log() => devtools.log(toString());
-}
+import 'package:flutter_state_management/_dart/extensions/log_extension.dart';
 
 enum Type { cat, dog }
 
