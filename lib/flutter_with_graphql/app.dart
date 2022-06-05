@@ -4,7 +4,6 @@ import 'package:flutter_state_management/flutter_with_graphql/components/query_w
 import 'package:flutter_state_management/flutter_with_graphql/graphql/queries/country/country.graphql.dart';
 import 'package:flutter_state_management/flutter_with_graphql/pages/mutation_with_hooks.dart';
 import 'package:flutter_state_management/flutter_with_graphql/pages/mutations.dart';
-import 'package:graphql_flutter/graphql_flutter.dart';
 
 import 'graphql/app_graphql_wrapper.dart';
 import 'graphql/queries/country/country_query_string.dart';
@@ -96,9 +95,10 @@ class HomePageWithWrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: QueryWrapper<QuerySingleCountry>(
+      body: QueryWrapper<Query$SingleCountry>(
+        // This is obsolete now with the graphql codegen
         queryString: COUNTRY_QUERY_STRING,
-        dataParser: (json) => QuerySingleCountry.fromJson(json),
+        dataParser: (json) => Query$SingleCountry.fromJson(json),
         variables: const {
           "countryId": "AD",
         },
@@ -132,17 +132,12 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(),
       // using the generated graphql code
       body: SafeArea(
-        child: Query(
-          options: QueryOptions(
-            document: QUERY_SINGLE_COUNTRY,
-            variables: const {
-              "countryId": "AD",
-            },
+        child: Query$SingleCountry$Widget(
+          options: Options$Query$SingleCountry(
+            variables: Variables$Query$SingleCountry(countryId: "AD"),
           ),
           builder: (result, {fetchMore, refetch}) {
-            final parsed = result.data == null
-                ? null
-                : QuerySingleCountry.fromJson(result.data!);
+            final parsed = result.parsedData;
 
             return Center(
               child: Column(
@@ -177,16 +172,22 @@ class HomePageWithHooks extends HookWidget {
     //     // parserFn: (json) => QuerySingleCountry.fromJson(json),
     //   ),
     // );
-    final queryResult = useQuery(
-      QueryOptions(
-        document: QUERY_SINGLE_COUNTRY,
-        variables: const {
-          "countryId": "AD",
-        },
-        parserFn: QuerySingleCountry.fromJson,
-        // parserFn: (json) => QuerySingleCountry.fromJson(json),
+    final queryResult = useQuery$SingleCountry(
+      Options$Query$SingleCountry(
+        variables: Variables$Query$SingleCountry(countryId: "AD"),
       ),
     );
+
+    // useQuery(
+    //   QueryOptions(
+    //     document: QUERY_SINGLE_COUNTRY,
+    // variables: const {
+    //   "countryId": "AD",
+    // },
+    //     parserFn: QuerySingleCountry.fromJson,
+    //     // parserFn: (json) => QuerySingleCountry.fromJson(json),
+    //   ),
+    // );
 
     if (queryResult.result.hasException) {
       return Text(queryResult.result.exception.toString());

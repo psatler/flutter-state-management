@@ -2,13 +2,13 @@ import 'package:json_annotation/json_annotation.dart';
 part 'schema.graphql.g.dart';
 
 @JsonSerializable(explicitToJson: true)
-class InputStringQueryOperatorInput {
-  InputStringQueryOperatorInput(
+class Input$StringQueryOperatorInput {
+  Input$StringQueryOperatorInput(
       {this.eq, this.ne, this.$in, this.nin, this.regex, this.glob});
 
   @override
-  factory InputStringQueryOperatorInput.fromJson(Map<String, dynamic> json) =>
-      _$InputStringQueryOperatorInputFromJson(json);
+  factory Input$StringQueryOperatorInput.fromJson(Map<String, dynamic> json) =>
+      _$Input$StringQueryOperatorInputFromJson(json);
 
   final String? eq;
 
@@ -23,7 +23,7 @@ class InputStringQueryOperatorInput {
 
   final String? glob;
 
-  Map<String, dynamic> toJson() => _$InputStringQueryOperatorInputToJson(this);
+  Map<String, dynamic> toJson() => _$Input$StringQueryOperatorInputToJson(this);
   int get hashCode {
     final l$eq = eq;
     final l$ne = ne;
@@ -44,7 +44,7 @@ class InputStringQueryOperatorInput {
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-    if (!(other is InputStringQueryOperatorInput) ||
+    if (!(other is Input$StringQueryOperatorInput) ||
         runtimeType != other.runtimeType) return false;
     final l$eq = eq;
     final lOther$eq = other.eq;
@@ -89,20 +89,20 @@ class InputStringQueryOperatorInput {
 }
 
 @JsonSerializable(explicitToJson: true)
-class InputCountryFilterInput {
-  InputCountryFilterInput({this.code, this.currency, this.continent});
+class Input$CountryFilterInput {
+  Input$CountryFilterInput({this.code, this.currency, this.continent});
 
   @override
-  factory InputCountryFilterInput.fromJson(Map<String, dynamic> json) =>
-      _$InputCountryFilterInputFromJson(json);
+  factory Input$CountryFilterInput.fromJson(Map<String, dynamic> json) =>
+      _$Input$CountryFilterInputFromJson(json);
 
-  final InputStringQueryOperatorInput? code;
+  final Input$StringQueryOperatorInput? code;
 
-  final InputStringQueryOperatorInput? currency;
+  final Input$StringQueryOperatorInput? currency;
 
-  final InputStringQueryOperatorInput? continent;
+  final Input$StringQueryOperatorInput? continent;
 
-  Map<String, dynamic> toJson() => _$InputCountryFilterInputToJson(this);
+  Map<String, dynamic> toJson() => _$Input$CountryFilterInputToJson(this);
   int get hashCode {
     final l$code = code;
     final l$currency = currency;
@@ -113,8 +113,8 @@ class InputCountryFilterInput {
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-    if (!(other is InputCountryFilterInput) || runtimeType != other.runtimeType)
-      return false;
+    if (!(other is Input$CountryFilterInput) ||
+        runtimeType != other.runtimeType) return false;
     final l$code = code;
     final lOther$code = other.code;
     if (l$code != lOther$code) return false;
@@ -129,16 +129,16 @@ class InputCountryFilterInput {
 }
 
 @JsonSerializable(explicitToJson: true)
-class InputContinentFilterInput {
-  InputContinentFilterInput({this.code});
+class Input$ContinentFilterInput {
+  Input$ContinentFilterInput({this.code});
 
   @override
-  factory InputContinentFilterInput.fromJson(Map<String, dynamic> json) =>
-      _$InputContinentFilterInputFromJson(json);
+  factory Input$ContinentFilterInput.fromJson(Map<String, dynamic> json) =>
+      _$Input$ContinentFilterInputFromJson(json);
 
-  final InputStringQueryOperatorInput? code;
+  final Input$StringQueryOperatorInput? code;
 
-  Map<String, dynamic> toJson() => _$InputContinentFilterInputToJson(this);
+  Map<String, dynamic> toJson() => _$Input$ContinentFilterInputToJson(this);
   int get hashCode {
     final l$code = code;
     return Object.hashAll([l$code]);
@@ -147,7 +147,7 @@ class InputContinentFilterInput {
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-    if (!(other is InputContinentFilterInput) ||
+    if (!(other is Input$ContinentFilterInput) ||
         runtimeType != other.runtimeType) return false;
     final l$code = code;
     final lOther$code = other.code;
@@ -157,16 +157,16 @@ class InputContinentFilterInput {
 }
 
 @JsonSerializable(explicitToJson: true)
-class InputLanguageFilterInput {
-  InputLanguageFilterInput({this.code});
+class Input$LanguageFilterInput {
+  Input$LanguageFilterInput({this.code});
 
   @override
-  factory InputLanguageFilterInput.fromJson(Map<String, dynamic> json) =>
-      _$InputLanguageFilterInputFromJson(json);
+  factory Input$LanguageFilterInput.fromJson(Map<String, dynamic> json) =>
+      _$Input$LanguageFilterInputFromJson(json);
 
-  final InputStringQueryOperatorInput? code;
+  final Input$StringQueryOperatorInput? code;
 
-  Map<String, dynamic> toJson() => _$InputLanguageFilterInputToJson(this);
+  Map<String, dynamic> toJson() => _$Input$LanguageFilterInputToJson(this);
   int get hashCode {
     final l$code = code;
     return Object.hashAll([l$code]);
@@ -175,7 +175,7 @@ class InputLanguageFilterInput {
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-    if (!(other is InputLanguageFilterInput) ||
+    if (!(other is Input$LanguageFilterInput) ||
         runtimeType != other.runtimeType) return false;
     final l$code = code;
     final lOther$code = other.code;
@@ -184,6 +184,6 @@ class InputLanguageFilterInput {
   }
 }
 
-const POSSIBLE_TYPES_MAP = const {
+const possibleTypesMap = {
   '_Entity': {'Country', 'Continent', 'Language'}
 };

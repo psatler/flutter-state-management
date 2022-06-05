@@ -6,26 +6,26 @@ part of 'countries.graphql.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-QueryListOfCountries _$QueryListOfCountriesFromJson(
+Query$ListOfCountries _$Query$ListOfCountriesFromJson(
         Map<String, dynamic> json) =>
-    QueryListOfCountries(
+    Query$ListOfCountries(
       countries: (json['countries'] as List<dynamic>)
-          .map((e) => QueryListOfCountries$countries.fromJson(
+          .map((e) => Query$ListOfCountries$countries.fromJson(
               e as Map<String, dynamic>))
           .toList(),
       $__typename: json['__typename'] as String,
     );
 
-Map<String, dynamic> _$QueryListOfCountriesToJson(
-        QueryListOfCountries instance) =>
+Map<String, dynamic> _$Query$ListOfCountriesToJson(
+        Query$ListOfCountries instance) =>
     <String, dynamic>{
       'countries': instance.countries.map((e) => e.toJson()).toList(),
       '__typename': instance.$__typename,
     };
 
-QueryListOfCountries$countries _$QueryListOfCountries$countriesFromJson(
+Query$ListOfCountries$countries _$Query$ListOfCountries$countriesFromJson(
         Map<String, dynamic> json) =>
-    QueryListOfCountries$countries(
+    Query$ListOfCountries$countries(
       code: json['code'] as String,
       name: json['name'] as String,
       phone: json['phone'] as String,
@@ -33,8 +33,8 @@ QueryListOfCountries$countries _$QueryListOfCountries$countriesFromJson(
       $__typename: json['__typename'] as String,
     );
 
-Map<String, dynamic> _$QueryListOfCountries$countriesToJson(
-        QueryListOfCountries$countries instance) =>
+Map<String, dynamic> _$Query$ListOfCountries$countriesToJson(
+        Query$ListOfCountries$countries instance) =>
     <String, dynamic>{
       'code': instance.code,
       'name': instance.name,

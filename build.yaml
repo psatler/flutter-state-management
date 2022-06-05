@@ -1,0 +1,21 @@
+# build.yaml
+
+targets:
+  $default:
+    builders:
+      graphql_codegen:
+        options:
+          # assetsPath: lib/flutter_with_graphql/graphql/schema/**
+          clients:
+            - graphql
+            - graphql_flutter
+          scopes:
+            - lib/flutter_with_graphql/graphql/**
+
+          # scalars:
+          #   ISO8601DateTime:
+          #     type: CustomDateTime
+          #     fromJsonFunctionName: customDateTimeFromJson
+          #     toJsonFunctionName: customDateTimeToJson
+          #     import: package:flutter_state_management/flutter_with_graphql/graphql/custom_scalars/custom_date_time.dart
+

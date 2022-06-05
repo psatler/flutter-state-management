@@ -6,9 +6,9 @@ part of 'schema.graphql.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-InputStringQueryOperatorInput _$InputStringQueryOperatorInputFromJson(
+Input$StringQueryOperatorInput _$Input$StringQueryOperatorInputFromJson(
         Map<String, dynamic> json) =>
-    InputStringQueryOperatorInput(
+    Input$StringQueryOperatorInput(
       eq: json['eq'] as String?,
       ne: json['ne'] as String?,
       $in: (json['in'] as List<dynamic>?)?.map((e) => e as String?).toList(),
@@ -17,8 +17,8 @@ InputStringQueryOperatorInput _$InputStringQueryOperatorInputFromJson(
       glob: json['glob'] as String?,
     );
 
-Map<String, dynamic> _$InputStringQueryOperatorInputToJson(
-        InputStringQueryOperatorInput instance) =>
+Map<String, dynamic> _$Input$StringQueryOperatorInputToJson(
+        Input$StringQueryOperatorInput instance) =>
     <String, dynamic>{
       'eq': instance.eq,
       'ne': instance.ne,
@@ -28,57 +28,57 @@ Map<String, dynamic> _$InputStringQueryOperatorInputToJson(
       'glob': instance.glob,
     };
 
-InputCountryFilterInput _$InputCountryFilterInputFromJson(
+Input$CountryFilterInput _$Input$CountryFilterInputFromJson(
         Map<String, dynamic> json) =>
-    InputCountryFilterInput(
+    Input$CountryFilterInput(
       code: json['code'] == null
           ? null
-          : InputStringQueryOperatorInput.fromJson(
+          : Input$StringQueryOperatorInput.fromJson(
               json['code'] as Map<String, dynamic>),
       currency: json['currency'] == null
           ? null
-          : InputStringQueryOperatorInput.fromJson(
+          : Input$StringQueryOperatorInput.fromJson(
               json['currency'] as Map<String, dynamic>),
       continent: json['continent'] == null
           ? null
-          : InputStringQueryOperatorInput.fromJson(
+          : Input$StringQueryOperatorInput.fromJson(
               json['continent'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$InputCountryFilterInputToJson(
-        InputCountryFilterInput instance) =>
+Map<String, dynamic> _$Input$CountryFilterInputToJson(
+        Input$CountryFilterInput instance) =>
     <String, dynamic>{
       'code': instance.code?.toJson(),
       'currency': instance.currency?.toJson(),
       'continent': instance.continent?.toJson(),
     };
 
-InputContinentFilterInput _$InputContinentFilterInputFromJson(
+Input$ContinentFilterInput _$Input$ContinentFilterInputFromJson(
         Map<String, dynamic> json) =>
-    InputContinentFilterInput(
+    Input$ContinentFilterInput(
       code: json['code'] == null
           ? null
-          : InputStringQueryOperatorInput.fromJson(
+          : Input$StringQueryOperatorInput.fromJson(
               json['code'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$InputContinentFilterInputToJson(
-        InputContinentFilterInput instance) =>
+Map<String, dynamic> _$Input$ContinentFilterInputToJson(
+        Input$ContinentFilterInput instance) =>
     <String, dynamic>{
       'code': instance.code?.toJson(),
     };
 
-InputLanguageFilterInput _$InputLanguageFilterInputFromJson(
+Input$LanguageFilterInput _$Input$LanguageFilterInputFromJson(
         Map<String, dynamic> json) =>
-    InputLanguageFilterInput(
+    Input$LanguageFilterInput(
       code: json['code'] == null
           ? null
-          : InputStringQueryOperatorInput.fromJson(
+          : Input$StringQueryOperatorInput.fromJson(
               json['code'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$InputLanguageFilterInputToJson(
-        InputLanguageFilterInput instance) =>
+Map<String, dynamic> _$Input$LanguageFilterInputToJson(
+        Input$LanguageFilterInput instance) =>
     <String, dynamic>{
       'code': instance.code?.toJson(),
     };
