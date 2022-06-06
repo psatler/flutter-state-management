@@ -4,6 +4,7 @@ import 'package:flutter_state_management/_dart/extensions/log_extension.dart';
 import '1_abstract_classes/abstract_classes.dart';
 import '2_mixins/dart_mixins.dart';
 import '3_isolates/dart_isolates_1.dart';
+import '3_isolates/dart_isolates_2.dart';
 
 class DartConcepts extends StatelessWidget {
   const DartConcepts({Key? key}) : super(key: key);
@@ -17,16 +18,28 @@ class DartConcepts extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(title: const Text('Dart')),
-        body: TextButton(
-          child: const Text('Dart Isolates - Press me'),
-          onPressed: () async {
-            final persons = await getPersons();
+        body: Center(
+          child: Column(
+            children: [
+              TextButton(
+                child: const Text('Dart Isolates - Press me'),
+                onPressed: () async {
+                  final persons = await getPersons();
 
-            persons.log();
+                  persons.log();
 
-            // output:
-            // [log] (Instance of 'Person', Instance of 'Person', Instance of 'Person', ..., Instance of 'Person', Instance of 'Person')
-          },
+                  // output:
+                  // [log] (Instance of 'Person', Instance of 'Person', Instance of 'Person', ..., Instance of 'Person', Instance of 'Person')
+                },
+              ),
+              TextButton(
+                child: const Text('Dart Isolates Example 2 - Press me'),
+                onPressed: () {
+                  testIsolateExample2();
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
