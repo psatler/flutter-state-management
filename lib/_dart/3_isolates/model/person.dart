@@ -33,4 +33,7 @@ class Person {
   String toJson() => json.encode(toMap());
 
   factory Person.fromJson(String source) => Person.fromMap(json.decode(source));
+
+  @override
+  String toString() => 'Person(id: $id, name: $name, email: $email)';
 }
