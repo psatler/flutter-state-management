@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_state_management/bloc/example_1_cubit/bloc_example_1.dart';
+import 'package:flutter_state_management/bloc/example_2_bloc/bloc_example_2.dart';
 
 class BlocStateManagement extends StatelessWidget {
   const BlocStateManagement({Key? key}) : super(key: key);
@@ -27,7 +28,15 @@ class BlocHome extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Bloc'),
       ),
-      body: const BlocExample1(),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: const [
+          Text('Cubit example 1'),
+          BlocExample1(),
+          Text('Bloc example 2'),
+          BlocExample2(),
+        ],
+      ),
     );
   }
 }
