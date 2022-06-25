@@ -11,6 +11,28 @@ class LoadingScreen {
 
   LoadingScreenController? _controller;
 
+  ///
+  /// NOTE: this should not call [_showOverlay] if it's already in the screen, but only update it.
+  void show({
+    required BuildContext context,
+    required String text,
+  }) {
+    if (_controller?.update(text) ?? false) {
+      // if we have an overlay, update it
+      return;
+    }
+
+    _controller = _showOverlay(
+      context: context,
+      text: text,
+    );
+  }
+
+  void hide() {
+    _controller?.close();
+    _controller = null;
+  }
+
   LoadingScreenController _showOverlay({
     required BuildContext context,
     required String text,
