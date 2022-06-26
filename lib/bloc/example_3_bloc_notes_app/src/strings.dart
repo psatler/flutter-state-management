@@ -13,3 +13,5 @@ const pleaseWait = 'Please wait...';
 const enterYourPasswordHere = 'Enter your password here...';
 const enterYourEmailHere = 'Enter your email here';
 const ok = 'Ok';
+const login = 'Log in';
+const homePage = 'Home Page';

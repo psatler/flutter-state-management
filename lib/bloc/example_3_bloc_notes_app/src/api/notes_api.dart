@@ -11,8 +11,6 @@ abstract class NotesApiProtocol {
 }
 
 class NotesApi implements NotesApiProtocol {
-  // making it a singleton
-
   @override
   Future<Iterable<Note>?> getNotes({required LoginHandle loginHandle}) async {
     final isLoggedIn = await Future.delayed(
