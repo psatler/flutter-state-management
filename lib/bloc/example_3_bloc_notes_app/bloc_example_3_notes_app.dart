@@ -21,6 +21,7 @@ class BlocExample3NotesApp extends StatelessWidget {
       create: (context) => AppBloc(
         loginApi: LoginApi(),
         notesApi: NotesApi(),
+        acceptedLoginHandle: const LoginHandle.foobar(),
       ),
       child: BlocConsumer<AppBloc, AppState>(
         listener: (context, appState) {

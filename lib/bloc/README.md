@@ -27,6 +27,7 @@
     ```
 - [Bloc example 2](lib/bloc/example_3_bloc_notes_app/bloc_example_3_notes_app.dart)
   - this one is using flutter_hooks to make it easier to create TextEditingControllers
+  - Equality for app state is important for tests
 
 
 # Bloc
