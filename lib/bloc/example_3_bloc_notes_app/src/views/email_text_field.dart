@@ -16,7 +16,7 @@ class EmailTextField extends StatelessWidget {
       keyboardType: TextInputType.emailAddress,
       autocorrect: false,
       decoration: const InputDecoration(
-        hintText: enterYourEmailHere,
+        hintText: '$enterYourEmailHere - foo@bar.com',
       ),
     );
   }

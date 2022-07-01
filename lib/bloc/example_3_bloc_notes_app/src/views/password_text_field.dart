@@ -17,7 +17,7 @@ class PasswordTextField extends StatelessWidget {
       obscureText: true,
       obscuringCharacter: '◉',
       decoration: const InputDecoration(
-        hintText: enterYourPasswordHere,
+        hintText: '$enterYourPasswordHere - foobar',
       ),
     );
   }

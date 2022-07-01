@@ -3,6 +3,7 @@ import 'package:flutter_state_management/bloc/example_1_cubit/bloc_example_1.dar
 import 'package:flutter_state_management/bloc/example_2_bloc/bloc_example_2.dart';
 
 import 'example_3_bloc_notes_app/bloc_example_3_notes_app.dart';
+import 'example_4_multi_bloc_provider/example_4_multi_bloc_provider.dart';
 
 class BlocStateManagement extends StatelessWidget {
   const BlocStateManagement({Key? key}) : super(key: key);
@@ -39,7 +40,12 @@ class BlocHome extends StatelessWidget {
           BlocExample2(),
           Text('Bloc example 3'),
           BlocExample3NotesApp(),
-          Spacer(flex: 4),
+          Text('Bloc example 4 - Multi Bloc Provider'),
+          Expanded(
+            child: Example4MultiBlocProvider(),
+          ),
+          Spacer(),
+          // Spacer(flex: 4),
         ],
       ),
     );

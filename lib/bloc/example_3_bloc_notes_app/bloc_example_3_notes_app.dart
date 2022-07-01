@@ -65,6 +65,16 @@ class BlocExample3NotesApp extends StatelessWidget {
             );
           }
 
+          // return Expanded(
+          //   child: Column(
+          //     children: [
+          //       const BackButton(
+          //         onPressed: () => ,
+          //       ),
+          //       notes.toListView(),
+          //     ],
+          //   ),
+          // );
           return notes.toListView();
         },
       ),
