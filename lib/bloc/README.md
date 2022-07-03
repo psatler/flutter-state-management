@@ -101,7 +101,20 @@ service firebase.storage = {
     - handling event for [image upload](https://github.com/vandadnp/youtube-course-bloc/blob/main/lib/bloc/app_bloc.dart#L212)
   - the general dialog used can be found [here](https://github.com/vandadnp/youtube-course-bloc/blob/main/lib/dialogs/generic_dialog.dart)
     - this is the base for the other dialogs, such as [delete account dialog](https://github.com/vandadnp/youtube-course-bloc/blob/main/lib/dialogs/delete_account_dialog.dart), [logout dialoag](https://github.com/vandadnp/youtube-course-bloc/blob/main/lib/dialogs/logout_dialog.dart), and so on.
-  -
+- a way to pre-populate the text fields if in debugging mode s shown [by the extension here](https://github.com/vandadnp/youtube-course-bloc/blob/main/lib/extensions/if_debugging.dart)
+  - it returns the exact same string if debugging, otherwise, returns _null_.
+- a generic loading screen overlay can be found [here](https://github.com/vandadnp/youtube-course-bloc/blob/main/lib/loading/loading_screen.dart)
+- views
+  - [login view](https://github.com/vandadnp/youtube-course-bloc/blob/main/lib/views/login_view.dart) using Flutter Hooks
+  - [pop up menu](https://github.com/vandadnp/youtube-course-bloc/blob/main/lib/views/main_popup_menu_button.dart) with log out and delete account options
+  - to display each [image box](https://github.com/vandadnp/youtube-course-bloc/blob/main/lib/views/storage_image_view.dart)
+  - [image gallery view](https://github.com/vandadnp/youtube-course-bloc/blob/main/lib/views/photo_gallery_view.dart) with GridView and use of the view mentioned on the last bullet above.
+    - this component _watches_ the bloc for state changes in order to update the UI.
+  - the [app view](https://github.com/vandadnp/youtube-course-bloc/blob/main/lib/views/app.dart) provides the _AppBloc_ to the rest of the application as well as _consuming_ the _AppBloc_ for changes.
+    - all the login errors, exceptions, if you don't have a token, etc, are handled at only one place, which is the **listener** of the _BlocConsumer_, which is going to display the correct dialog.
+  - the [main.dart](https://github.com/vandadnp/youtube-course-bloc/blob/main/lib/main.dart) file with the _Firebase_ initialization.
+
+
 
 # Testing files
 
