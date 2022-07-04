@@ -1,5 +1,7 @@
 > Flutter Bloc State Management
 
+- [Bloc Concepts](#bloc-concepts)
+
 
 # Blocs example folder strucuture
 
@@ -137,7 +139,7 @@ service firebase.storage = {
 
 ### Layers of abstractions
 <p>
-  <img alt="layers" src="./assets/layers.png" width="500px" />
+  <img alt="layers" src="./assets/layers.png" width="650px" />
 </p>
 
 
@@ -159,7 +161,7 @@ service firebase.storage = {
   │   ├── widgets
   ```
   <p>
-    <img alt="bloc-data-flow" src="./assets/bloc-data-flow.png" width="500px" />
+    <img alt="bloc-data-flow" src="./assets/bloc-data-flow.png" width="650px" />
   </p>
 
 - **Business logic layer**
@@ -167,7 +169,7 @@ service firebase.storage = {
   - it's the "last layer" that can intercept and catch any errors within the data layer, and protecting the application from crashing in the "last moment".
   - it can depend on one or more repositories
   <p>
-    <img alt="bloc-layer" src="./assets/bloc-layer.png" width="500px" />
+    <img alt="bloc-layer" src="./assets/bloc-layer.png" width="650px" />
   </p>
 
   - one important fact is that **bloc can communicate with other blocs**. Cubits can do it too.
@@ -175,7 +177,7 @@ service firebase.storage = {
       - Suppose the internet dies. In the _weather bloc_ you want to know the connection status. You can do by depending on the _internet bloc_ and subscribe to its stream of emitted states and react to every internet state emitted by the _internet bloc_.
       - We can then communicate to the presentation layer that there is no internet `NoInternet()`.
       <p>
-        <img alt="bloc-listening-to-other-blocs" src="./assets/bloc-listening-to-other-blocs.png" width="500px" />
+        <img alt="bloc-listening-to-other-blocs" src="./assets/bloc-listening-to-other-blocs.png" width="650px" />
       </p>
 
 
@@ -186,15 +188,25 @@ service firebase.storage = {
     - **data providers**: their responsibility is to provide _raw data_ to the repositories.
       - can be seen as an "api for your own app". 
       <p>
-        <img alt="data-provider" src="./assets/data-provider.png" width="500px" />
+        <img alt="data-provider" src="./assets/data-provider.png" width="650px" />
       </p>
     - **repositories**: this is a "wrapper" between one or more data providers. It's the part of the data layer bloc communicates with
       - they are classes which contain dependencies of the respective data providers
       - we can use this layer to fine tune the data such as transformation, filtering, etc, before sending to the bloc
       <p>
-        <img alt="repositories" src="./assets/repository.png" width="500px" />
+        <img alt="repositories" src="./assets/repository.png" width="650px" />
       </p>
 
+### Bloc testing
+
+- `setUp`: we can use to instantiate the objects our test will be working with
+- `tearDown`: function called after each test is run
+
+
+### Bloc access
+
+- when we want to provide an existing instance of a Bloc or Cubit, we use `BlocProvider.value`.
+- when we want to create and provide a new bloc or cubit instance, we use the standalone `BlocProvider` widget.
 
 
 
