@@ -114,6 +114,88 @@ service firebase.storage = {
     - all the login errors, exceptions, if you don't have a token, etc, are handled at only one place, which is the **listener** of the _BlocConsumer_, which is going to display the correct dialog.
   - the [main.dart](https://github.com/vandadnp/youtube-course-bloc/blob/main/lib/main.dart) file with the _Firebase_ initialization.
 
+## Bloc concepts
+
+- Contents below were extracted from this [youtube playlist](https://www.youtube.com/watch?v=NqUx-NfTts4&list=PLptHs0ZDJKt_T-oNj_6Q98v-tBnVf-S_o&index=4&ab_channel=Flutterly)
+
+- **BlocProvider** - creates and provides a Bloc to its children
+- **RepositoryProvider**
+  - it's same as BlocProvider, except that _BlocProvider_ provides a unique instance of a bloc, while the other one (_RepositoryProvider_) provides a unique instance of a Repository.
+    - in a nutshell, repository is a class which has the main function to communicate with the outer data layer such as the internet, databases, and so on.
+- **MultiBlocProvider**
+- **MultiListenerProvider**
+- **MultiRepositoryProvider**
+- **BlocBuilder** - build the UI and react to changes in order to update the UI
+  - builder
+  - buildWhen
+- **BlocListener**
+  - the listener is called only once per state
+  - also has an optional _listenWhen_ function
+- **BlocConsumer**
+  - combines both BlocBuilder and BlocListener
+
+
+### Layers of abstractions
+<p>
+  <img alt="layers" src="./assets/layers.png" width="500px" />
+</p>
+
+
+
+- **Presentation layer**
+  - a suggested folder structure would be
+  ```
+  ├── business_logic
+  │   ├── blocs
+  │   ├── cubits
+  ├── data
+  │   ├── dataproviders
+  │   ├── models
+  │   ├── repositories
+  ├── presentation
+  │   ├── animations
+  │   ├── pages
+  │   ├── screens
+  │   ├── widgets
+  ```
+  <p>
+    <img alt="bloc-data-flow" src="./assets/bloc-data-flow.png" width="500px" />
+  </p>
+
+- **Business logic layer**
+  - can be seen as the "mediator" between the presentation and data layer
+  - it's the "last layer" that can intercept and catch any errors within the data layer, and protecting the application from crashing in the "last moment".
+  - it can depend on one or more repositories
+  <p>
+    <img alt="bloc-layer" src="./assets/bloc-layer.png" width="500px" />
+  </p>
+
+  - one important fact is that **bloc can communicate with other blocs**. Cubits can do it too.
+    - for example, let's say we have the _weather bloc_ and an _internet bloc_ which emits states based on wether there is a stable internet connection or not.
+      - Suppose the internet dies. In the _weather bloc_ you want to know the connection status. You can do by depending on the _internet bloc_ and subscribe to its stream of emitted states and react to every internet state emitted by the _internet bloc_.
+      - We can then communicate to the presentation layer that there is no internet `NoInternet()`.
+      <p>
+        <img alt="bloc-listening-to-other-blocs" src="./assets/bloc-listening-to-other-blocs.png" width="500px" />
+      </p>
+
+
+- **Data layer**
+  - has the responsibility to send, and also retrieve and manipulate data from one or more outer resources
+  - can be divided into sublayers such as
+    - **models**: a blueprint for the data your application will work with. Ideallym they should be independent from the data source so that they can be used along with several different data sources.
+    - **data providers**: their responsibility is to provide _raw data_ to the repositories.
+      - can be seen as an "api for your own app". 
+      <p>
+        <img alt="data-provider" src="./assets/data-provider.png" width="500px" />
+      </p>
+    - **repositories**: this is a "wrapper" between one or more data providers. It's the part of the data layer bloc communicates with
+      - they are classes which contain dependencies of the respective data providers
+      - we can use this layer to fine tune the data such as transformation, filtering, etc, before sending to the bloc
+      <p>
+        <img alt="repositories" src="./assets/repository.png" width="500px" />
+      </p>
+
+
 
 
 # Testing files
