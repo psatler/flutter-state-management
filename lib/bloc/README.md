@@ -118,7 +118,7 @@ service firebase.storage = {
 
 ## Bloc concepts
 
-- Contents below were extracted from this [youtube playlist](https://www.youtube.com/watch?v=NqUx-NfTts4&list=PLptHs0ZDJKt_T-oNj_6Q98v-tBnVf-S_o&index=4&ab_channel=Flutterly)
+- Contents below were extracted from this [youtube playlist](https://www.youtube.com/watch?v=NqUx-NfTts4&list=PLptHs0ZDJKt_T-oNj_6Q98v-tBnVf-S_o&index=4&ab_channel=Flutterly). The github repo is found [here](https://github.com/TheWCKD/blocFromZeroToHero)
 
 - **BlocProvider** - creates and provides a Bloc to its children
 - **RepositoryProvider**
@@ -207,6 +207,48 @@ service firebase.storage = {
 
 - when we want to provide an existing instance of a Bloc or Cubit, we use `BlocProvider.value`.
 - when we want to create and provide a new bloc or cubit instance, we use the standalone `BlocProvider` widget.
+
+### Bloc to Bloc communication
+
+- **Stream Subscription**: we can subscribe to streams or cubits 
+  - the stream subscription should be defined right be first state is emitted, so the place to do it is at the Bloc and Cubit constructor.
+    - for example, we can [listen to internet connectivity changes](https://github.com/TheWCKD/blocFromZeroToHero/blob/master/%237%20-%20BLoC%20Communication/lib/logic/cubit/internet_cubit.dart#L15) in order to incremenet a counter
+    - notice we are [listening the connectivity changes](https://github.com/TheWCKD/blocFromZeroToHero/blob/master/%237%20-%20BLoC%20Communication/lib/logic/cubit/internet_cubit.dart#L12) by listening to the stream emitted by the connectivity_plus package
+    - in the [Counter cubit](https://github.com/TheWCKD/blocFromZeroToHero/blob/master/%237%20-%20BLoC%20Communication/lib/logic/cubit/counter_cubit.dart) we need to listen to the internet cubit stream
+      <p>
+        <img alt="listen-to-other-cubit" src="./assets/listen-to-other-cubit.png" width="650px" />
+      </p>
+
+    - initializing the cubit and passing the dependencies in the [main.dart](https://github.com/TheWCKD/blocFromZeroToHero/blob/master/%237%20-%20BLoC%20Communication/lib/main.dart#L29) file.
+    - do not forget to close the subscriptions on dispose
+
+- **Bloc Listener**:
+  - can be used to listen and react to state changes from another cubit/bloc
+  - it manages the stream subscriptions internally
+    <p>
+      <img alt="bloc-listener" src="./assets/bloc-listener.png" width="650px" />
+    </p>
+  - you can see [here](https://github.com/TheWCKD/blocFromZeroToHero/blob/master/%237%20-%20BLoC%20Communication/lib/presentation/screens/home_screen.dart#L20) that depending on the state, we notify the bloc/cubit what it should do.
+  - Bloc Listener only listens to state changes, so, as this doesn't rebuild the UI, it's ok to place upper in the widget tree.
+
+### Build context
+
+- the video is [worth watching](https://youtu.be/iNgwFMm3opE)
+- has a bottom-up relationship. It only cares about its parent context. It won't record any information about its child/children.
+- the only way you can navigate in the widget tree is **up**.
+<p>
+  <img alt="build-context" src="./assets/build-context.png" width="650px" />
+</p>
+
+- For example, `Navigator.of(context).pushName('')`
+  <p>
+    <img alt="build-context-navigator" src="./assets/build-context-navigator.png" width="650px" />
+  </p>
+  - Search the closest navigator: flutter is going to lookup after the closest navigator widget, starting with the past BuildContext instance 
+  <p>
+    <img alt="build-context-bloc-provider" src="./assets/build-context-bloc-provider.png" width="650px" />
+  </p>
+- **one thing to keep in mind is that we cannot access a Bloc/Cubit in the same context in which it was provided.**
 
 
 
