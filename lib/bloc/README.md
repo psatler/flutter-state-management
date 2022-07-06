@@ -137,6 +137,13 @@ service firebase.storage = {
   - combines both BlocBuilder and BlocListener
 
 
+### Bloc and Cubits
+
+<p>
+  <img alt="cubits-blocs" src="./assets/cubits-blocs.png" width="650px" />
+</p>
+
+
 ### Layers of abstractions
 <p>
   <img alt="layers" src="./assets/layers.png" width="650px" />
@@ -249,6 +256,86 @@ service firebase.storage = {
     <img alt="build-context-bloc-provider" src="./assets/build-context-bloc-provider.png" width="650px" />
   </p>
 - **one thing to keep in mind is that we cannot access a Bloc/Cubit in the same context in which it was provided.**
+
+### context.select, context.watch and context.read
+
+- context.watch
+  - `context.watch<BlocA>()` means
+    1. from the widget that was built within the context _BuildContext_
+    2. Start searching for the unique instance of BlocA() provided above in the widget tree, then
+    3. after it is found, **watch or "subscribe"** to its stream of emitted states,
+    4. and whenever a new state is emitted by BlocA
+    5. rebuild the widget from which the lookup was started  
+- context.select
+- context.read
+
+### Bloc state not updating?
+
+- Bloc/Cubit do not emit the same state twice in row
+- Use Equatable to help with comparing objects
+
+### Maintaining state with hydrated_bloc
+
+- we need `hydrated_bloc` and `path_provider` (this one so that we know the path/storage location for the app)
+
+- The piece of code below can also be seen [here](https://github.com/TheWCKD/blocFromZeroToHero/blob/master/%2311%20-%20Maintaining%20State%20with%20Hydrated%20Bloc/lib/main.dart#L17)
+```dart
+HydratedBloc.storage = await HydratedStorage.build(
+  storageDirectory: await getApplicationDocumentsDirectory(),
+);
+```
+
+- to a Bloc or Cubit to become hydrated, it needs to use the [`HydratedMixin`](https://github.com/TheWCKD/blocFromZeroToHero/blob/master/%2311%20-%20Maintaining%20State%20with%20Hydrated%20Bloc/lib/logic/cubit/counter_cubit.dart#L10). We can also use the _HydratedCubit_ or _HydratedBloc_ from the `hydrated_bloc` package and [we also override the toJson and fromJson methods in the Bloc itself](https://github.com/TheWCKD/blocFromZeroToHero/blob/master/%2311%20-%20Maintaining%20State%20with%20Hydrated%20Bloc/lib/logic/cubit/counter_cubit.dart#L19-L27). Notice we also need to create the [JSON serialization methods for the state](https://github.com/TheWCKD/blocFromZeroToHero/blob/master/%2311%20-%20Maintaining%20State%20with%20Hydrated%20Bloc/lib/logic/cubit/counter_state.dart#L28) we want to store locally,
+as these methods are used on hydrating the bloc, as shown below.
+  <p>
+    <img alt="hydrated_bloc" src="./assets/hydrated_bloc.png" width="650px" />
+  </p>
+
+- We may want to store only **some states (not all of them)** of the app and that is perfectly fine. 
+
+### Debugging and observing blocs
+
+
+- we can use methods such as `onChange`, `onTransition` 
+<p>
+  <img alt="debugging-blocs" src="./assets/debugging-blocs.png" width="650px" />
+</p>
+
+- `void onChange(currentState, nextState)`: can be used to observe **all changes** for a given Cubit or Bloc
+- `void onError(Object error, StackTrace stackTrace)`: triggered whenever there is an exception inside a Cubit or Bloc
+  - we can use the `addError` function to dispatch an exception if something in the Cubit/Bloc goes wrong, for example
+
+Beyond the aforementioned methods, in a Bloc we can override the following methods:
+- `onTransition`, `onEvent`
+
+<p>
+  <img alt="bloc-methods" src="./assets/bloc-methods.png" width="650px" />
+</p>
+
+
+But instead of overriding each Bloc to check its state, we can use the _BlocObserver_. This one has all the mentioned Bloc events, and also the `onCreate` and `onClose` in order to inform whether a Bloc
+has been created or closed.
+- so we create a class that extends BlocObserver, like shown [here](https://github.com/TheWCKD/blocFromZeroToHero/blob/master/%2312%20-%20Final%20topics/lib/logic/utility/app_bloc_observer.dart)
+- [we set the observer at the start of the application](https://github.com/TheWCKD/blocFromZeroToHero/blob/master/%2312%20-%20Final%20topics/lib/main.dart#L20), in the main.dart file
+
+
+### Naming conventions
+
+- For states
+<p>
+  <img alt="states-naming-convention" src="./assets/states-naming-convention.png" width="650px" />
+</p>
+
+- For events
+<p>
+  <img alt="events-naming-conventions" src="./assets/events-naming-conventions.png" width="650px" />
+</p>
+
+- For actions in cubits
+<p>
+  <img alt="cubits-actions-naming-conventions" src="./assets/cubits-actions-naming-conventions.png" width="650px" />
+</p>
+
 
 
 
